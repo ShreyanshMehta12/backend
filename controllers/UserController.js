@@ -217,6 +217,23 @@ class UserController{
             console.log(error)
         }
     }
-    
+    static get_user_detail =async(req,res)=>{
+        try{
+            const{name,image,_id,email}=req.user
+            res.render('me',{n:name,i:image,e:email,message: req.flash('success')})
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+    static get_all_user =async(req,res)=>{
+        try{
+            const{name,image,_id,email}=req.user
+            res.render('getalluser',{n:name,i:image,e:email,message: req.flash('success')})
+
+        }catch(error){
+            console.log(error)
+        }
+    }
 }
 module.exports = UserController;    

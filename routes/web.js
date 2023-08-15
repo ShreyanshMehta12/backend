@@ -19,5 +19,7 @@ router.get('/logout',UserController.logout)
 router.get('/profile',UserController.profile)
 router.post('/updatepassword',CheckUserAuth,UserController.changepassword)
 router.post('/updateprofile',CheckUserAuth,UserController.updateprofile)
+router.get('/me',UserController.get_user_detail)
+router.get('/getalluser',UserController.get_all_user)
 
 module.exports = router
