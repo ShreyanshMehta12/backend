@@ -1,9 +1,19 @@
 const UserModel = require('../models/User');
+const ProductModel = require('../models/Product')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cloudinary =require("cloudinary").v2;
+
+cloudinary.config({
+    cloud_name:"dccjxejqv",
+    api_key:"919419823113387",
+    api_secret: "fXcGpgVPdl635BTq5JIItFP04b4",
+    secure: false,
+});
+
 class UserController{
 
-    static userregister=async(req,res)=>{
+    static userinsert=async(req,res)=>{
         // console.log(req.files.image)
         // const imagefile=req.files.image
         // const imageupload=await cloudinary.uploader.upload(imagefile.tempFilePath,{
@@ -57,7 +67,7 @@ class UserController{
             }
         }
      }
-     static verifylogin=async(req,res)=>{
+    static verifylogin=async(req,res)=>{
         try{
             // console.log(req.body)
             const{email,password}=req.body
@@ -114,6 +124,99 @@ class UserController{
             res.send(error)
         }
      }
-   
+    static logout =async(req,res)=>{
+        try{
+            res.clearCookie('token')
+            res.redirect("/")
+        }catch(error){
+            console.log(error)
+        }
+    }
+    static profile =async(req,res)=>{
+        try{
+            const{name,image,_id,email}=req.user
+            res.render('profile',{n:name,i:image,e:email,message: req.flash('success')})
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+    static changepassword =async(req,res)=>{
+        try{
+            const{name,image,_id,email}=req.user
+            const{oldpassword,newpassword,cpassword}=req.body
+
+            if(oldpassword && newpassword && cpassword){
+                const user=await UserModel.findById(_id)
+                const ismatch=await bcrypt.compare(oldpassword,user.password)
+                if(!ismatch){
+
+                    res.status(400)
+                    .json({ status: "Failed",message: "Old Password is incorrect"});
+        
+                }else{
+                    if(newpassword!==cpassword){
+
+                        res.status(400)
+                        .json({ status: "Failed",message: "Password and Conform Password does not match"});
+            
+                    }else{
+                        const newHashPassword=await bcrypt.hash(newpassword,10)
+                        await UserModel.findByIdAndUpdate(_id,{
+                            $set:{password:newHashPassword},
+                        });
+
+                        res.status(201)
+                        .json({ status: "Success",message: "Password changed successfully"});
+            
+                    }
+                }
+            }else{
+                res.status(400)
+                .json({ status: "Failed",message: "All Field are required"});
+            
+            }
+
+            // console.log(req.body)
+        }catch(error){
+            console.log(error)
+        }
+    }
+    static updateprofile = async (req, res) => {
+        try {
+            //console.log(req.files.image)
+            if (req.files) {
+                const user = await UserModel.findById(req.user.id);
+                const image_id = user.image.public_id;
+                await cloudinary.uploader.destroy(image_id);
+    
+                const file = req.files.image;
+                const myimage = await cloudinary.uploader.upload(file.tempFilePath, {
+                    folder: "studentimage",
+    
+                });
+                var data = {
+                    name: req.body.name,
+                    email: req.body.email,
+                    image: {
+                        public_id: myimage.public_id,
+                        url: myimage.secure_url,
+                    },
+                };
+            } else {
+                var data = {
+                    name: req.body.name,
+                    email: req.body.email,
+    
+                }
+            }
+            const update_profile = await UserModel.findByIdAndUpdate(req.user.id, data)
+            res.status(201)
+            .json({status: "Success", message: "Profile Update successfully"});
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
 }
-module.exports = UserController;
+module.exports = UserController;    

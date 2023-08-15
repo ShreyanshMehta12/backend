@@ -1,31 +1,38 @@
-const mongoose=require('mongoose')
+const mongoose = require('mongoose')
 
-//define schema
-const UserSchema=new mongoose.Schema({
+// define schema
+const UserSchema = new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:true,    
     },
     email:{
         type:String,
-        required:true
+        required:true,
     },
     password:{
         type:String,
-        required:true
+        required:true,
     },
-    // image:{
-    //     public_id:{
-    //         type:String,
-    //     },
-    //     url:{
-    //         type:String,
-    //     }
-    // }
-
+    image:    
+    {
+      public_id: {
+        type: String,
+        
+      },
+      url: {
+        type: String,
+         
+      },
+    },
+    role:{
+      type: String,
+      default: 'student'
+    }
+    
 },{timestamps:true})
 
-//create collection
-const UserModel = mongoose.model('User',UserSchema)
+// create collection
 
-module.exports = UserModel
+const UserModel = mongoose.model('users',UserSchema)
+module.exports = UserModel;

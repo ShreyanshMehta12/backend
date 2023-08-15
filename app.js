@@ -8,9 +8,17 @@ const web = require('./routes/web')
 dotenv.config({
   path: '.env'
 })
+const fileUpload=require("express-fileupload");
+//Temp file uploader
+app.use(fileUpload({useTempFiles: true}));
 
+app.use(express.json())
 connectdb()
 app.use('/api',web)
+
+//cookies
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
 
 
 app.listen(process.env.PORT, () => {

@@ -1,4 +1,8 @@
 const ProductModel = require('../models/Product')
+const UserModel = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const cloudinary =require("cloudinary").v2;
 
 class ProductController{
 
