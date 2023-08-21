@@ -127,7 +127,10 @@ class UserController{
     static logout =async(req,res)=>{
         try{
             res.clearCookie('token')
-            res.redirect("/")
+            res.status(200).json({
+                success:true,
+                message:"Logged Out",
+            });
         }catch(error){
             console.log(error)
         }
@@ -219,20 +222,28 @@ class UserController{
     }
     static get_user_detail =async(req,res)=>{
         try{
-            const{name,image,_id,email}=req.user
-            res.render('me',{n:name,i:image,e:email,message: req.flash('success')})
-
+            const user=await UserModel.findById(req.user.id)
+            res.status(200).json({
+                success:true,
+                user
+            })
         }catch(error){
             console.log(error)
         }
+        
     }
     static get_all_user =async(req,res)=>{
+        
         try{
-            const{name,image,_id,email}=req.user
-            res.render('getalluser',{n:name,i:image,e:email,message: req.flash('success')})
-
-        }catch(error){
-            console.log(error)
+            const user=await UserModel.find()
+            //console.log(result)
+            res.status(200).json({
+                success:true,
+                user
+            })  
+        }
+        catch(err){
+            console.log(err)
         }
     }
 }
