@@ -13,10 +13,10 @@ router.post('/update/:id',ProductController.update)
 router.delete('/delete/:id',ProductController.delete)
 
 //user controller
-router.post('/userregister',UserController.userinsert)
+router.post('/userinsert',UserController.userinsert)
 router.post('/verifylogin',UserController.verifylogin)
 router.get('/logout',UserController.logout)
-router.get('/profile',UserController.profile)
+router.get('/profile',CheckUserAuth,UserController.profile)
 router.post('/updatepassword',CheckUserAuth,UserController.changepassword)
 router.post('/updateprofile',CheckUserAuth,UserController.updateprofile)
 router.get('/me',UserController.get_user_detail)
