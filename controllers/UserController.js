@@ -38,10 +38,10 @@ class UserController{
                         name: name,
                         email: email,
                         password: hashpassword,
-                        image:{
-                            public_id: imageupload.public_id,
-                            url: imageupload.secure_url
-                        }
+                        // image:{
+                        //     public_id: imageupload.public_id,
+                        //     url: imageupload.secure_url
+                        // }
                         })
                         await result.save()
                         res.status(401).json({
