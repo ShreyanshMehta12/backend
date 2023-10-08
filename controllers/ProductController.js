@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const cloudinary =require("cloudinary").v2;
 
 class ProductController{
-
+    
     static create = async(req,res)=>{
        try{
             const {title,description} = req.body

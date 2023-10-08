@@ -66,7 +66,7 @@ class UserController{
             
             }
         }
-     }
+    }
     static verifylogin=async(req,res)=>{
         try{
             // console.log(req.body)
@@ -123,7 +123,7 @@ class UserController{
         {
             res.send(error)
         }
-     }
+    }
     static logout =async(req,res)=>{
         try{
             res.clearCookie('token')
