@@ -4,13 +4,15 @@ const port = 4000
 const dotenv = require('dotenv')
 const connectdb = require('./db/connectdb')
 const web = require('./routes/web')
-
+const cors = require('cors')
 dotenv.config({
   path: '.env'
 })
 const fileUpload=require("express-fileupload");
 //Temp file uploader
 app.use(fileUpload({useTempFiles: true}));
+//cors
+app.use(cors())
 
 app.use(express.json())
 connectdb()
