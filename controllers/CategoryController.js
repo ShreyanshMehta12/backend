@@ -17,7 +17,8 @@ class CategoryController{
             const{name,image,_id,email}=req.body
             const data = new CategoryModel({
                 name:name,
-                email:email
+                email:email,
+                image:image
             })
             await data.save();
             

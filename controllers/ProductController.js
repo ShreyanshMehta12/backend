@@ -1,17 +1,26 @@
-const ProductModel = require('../models/Product')
-const UserModel = require('../models/User');
+const ProductModel = require('../models/Product');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cloudinary =require("cloudinary").v2;
+
+cloudinary.config({
+    cloud_name:"dccjxejqv",
+    api_key:"919419823113387",
+    api_secret: "fXcGpgVPdl635BTq5JIItFP04b4",
+    secure: false,
+});
 
 class ProductController{
     
     static create = async(req,res)=>{
        try{
-            const {title,description} = req.body
+            const {name,description,image,price,stock} = req.body
             const result = new ProductModel({
-                title:title,
-                description:description
+                name:name,
+                description:description,
+                image:image,
+                price:price,
+                stock:stock
             })
             await result.save();
             res.status(201).json({
@@ -49,10 +58,13 @@ class ProductController{
     }
     static update = async(req,res)=>{
         try{
-            const{title,description} = req.body
+            const{name,description,image,price,stock} = req.body
             const data =await  ProductModel.findByIdAndUpdate(req.params.id,{
-                title:title,
-                description:description
+                name:name,
+                description:description,
+                image:image,
+                price:price,
+                stock:stock
             });
             res.status(201).json({
                 success: true,

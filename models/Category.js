@@ -9,18 +9,18 @@ const CategorySchema = new mongoose.Schema({
     email:{
         type:String,
         required:true,
-    }
-    // image:    
-    // {
-    //   public_id: {
-    //     type: String,
+    },
+    image:    
+    {
+      public_id: {
+        type: String,
         
-    //   },
-    //   url: {
-    //     type: String,
+      },
+      url: {
+        type: String,
          
-    //   },
-    // }
+      },
+    }
     
 },{timestamps:true})
 
