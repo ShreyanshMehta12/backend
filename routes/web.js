@@ -12,6 +12,7 @@ router.get('/display',ProductController.display)
 router.get('/view/:id',ProductController.view)
 router.post('/update/:id',ProductController.update)
 router.delete('/delete/:id',ProductController.delete)
+router.get('/productdetail/:id',ProductController.productdetail)
 
 //user controller
 router.post('/userinsert',UserController.userinsert)
