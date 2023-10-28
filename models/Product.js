@@ -19,12 +19,13 @@ const ProductSchema = new mongoose.Schema({
         }
     },
     price:{
-        type:String,
+        type: Number,
         required:true
     },
     stock:{
-        type:String,
-        required:true
+        type: Number,
+        required:true,
+        default: 1,
     },
 
 },{timestamps:true})
