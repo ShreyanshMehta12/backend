@@ -41,7 +41,7 @@ class CategoryController{
 
     static catdelete = async(req,res)=>{
         try{
-            const data =await  CategoryModel.findByIdAndDelete(req.params.id)
+            const data = await  CategoryModel.findByIdAndDelete(req.params.id)
             res.status(200).json({
                 success: true,
                 message:'Delete Successfully'

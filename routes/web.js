@@ -28,7 +28,7 @@ router.get('/getalluser',UserController.get_all_user)
 //category controller
 router.post('/category',CategoryController.category)
 router.get('/category/display',CategoryController.catdisplay)
-router.get('/categorydelete/:id',CategoryController.catdelete)
+router.delete('/catdelete/:id',CategoryController.catdelete)
 
 //Slider controller
 router.post('/insert',SliderController.insert)
