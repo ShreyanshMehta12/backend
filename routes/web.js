@@ -5,6 +5,7 @@ const UserController = require('../controllers/UserController')
 const CheckUserAuth = require('../middleware/auth')
 const CategoryController = require('../controllers/CategoryController')
 const router = express.Router()
+const SliderController = require('../controllers/SliderController')
 
 //product controller
 router.post('/create',ProductController.create)
@@ -28,5 +29,9 @@ router.get('/getalluser',UserController.get_all_user)
 router.post('/category',CategoryController.category)
 router.get('/category/display',CategoryController.catdisplay)
 router.get('/categorydelete/:id',CategoryController.catdelete)
+
+//Slider controller
+router.post('/insert',SliderController.insert)
+router.get('/sdisplay',SliderController.display)
 
 module.exports = router
