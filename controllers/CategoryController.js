@@ -24,7 +24,7 @@ class CategoryController{
             
             res.status(200).json({
                 success: true,
-                data
+                data       
             })
         }catch(error){
             console.log(error)
@@ -38,7 +38,23 @@ class CategoryController{
             data,
         });
     };
-
+    static catupdate = async(req,res)=>{
+        try{
+            const{name,image,_id,email} = req.body
+            const data =await  ProductModel.findByIdAndUpdate(req.params.id,{
+                    name:name,
+                    email:email,
+                    image:image
+            });
+            res.status(201).json({
+                success: true,
+                message:'Update Successfully'
+            })
+        }catch(error){
+            console.log(error);
+       
+        }
+    };
     static catdelete = async(req,res)=>{
         try{
             const data = await  CategoryModel.findByIdAndDelete(req.params.id)
