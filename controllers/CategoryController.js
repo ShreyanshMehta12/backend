@@ -41,7 +41,7 @@ class CategoryController{
     static catupdate = async(req,res)=>{
         try{
             const{name,image,_id,email} = req.body
-            const data =await  ProductModel.findByIdAndUpdate(req.params.id,{
+            const data =await  CategoryModel.findByIdAndUpdate(req.params.id,{
                     name:name,
                     email:email,
                     image:image

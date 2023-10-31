@@ -30,6 +30,7 @@ router.post('/category',CategoryController.category)
 router.get('/category/display',CategoryController.catdisplay)
 router.delete('/catdelete/:id',CategoryController.catdelete)
 router.post('/catupdate/:id',CategoryController.catupdate)
+
 //Slider controller
 router.post('/insert',SliderController.insert)
 router.get('/sdisplay',SliderController.display)
