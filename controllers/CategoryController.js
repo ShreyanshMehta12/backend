@@ -46,7 +46,8 @@ class CategoryController{
                     email:email,
                     image:image
             });
-            res.status(201).json({
+            await data.save();
+            res.status(200).json({
                 success: true,
                 message:'Update Successfully'
             })
