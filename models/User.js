@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
       type:String,
       required:true,
     },
-    image:    
+    image:
     {
       public_id: {
         type: String,
