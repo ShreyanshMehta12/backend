@@ -16,7 +16,7 @@ router.delete('/delete/:id',ProductController.delete)
 router.get('/productdetail/:id',ProductController.productdetail)
 
 //user controller
-router.post('/userinsert',CheckUserAuth,UserController.userinsert)
+router.post('/userinsert',UserController.userinsert)
 router.post('/verifylogin',UserController.verifylogin)
 router.get('/logout',UserController.logout)
 router.get('/profile',UserController.profile)
