@@ -34,7 +34,7 @@ class UserController{
                 if(password==confirm_password){
                     try{
                         const hashpassword=await bcrypt.hash(password,10)
-                        const result=new UserModel({
+                        const data=new UserModel({
                         name: name,
                         email: email,
                         password: hashpassword,
@@ -43,10 +43,10 @@ class UserController{
                         //     url: imageupload.secure_url
                         // }
                         })
-                        await result.save()
+                        await data.save()
                         res.status(401).json({
                             message: 'Successfully registered',
-                            result,
+                            data,
                         })
                             
                     }catch(error){
