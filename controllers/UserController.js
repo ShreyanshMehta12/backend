@@ -14,15 +14,15 @@ cloudinary.config({
 class UserController{
 
     static userinsert=async(req,res)=>{
-        // console.log(req.files.image)
-        // const imagefile=req.files.image
-        // const imageupload=await cloudinary.uploader.upload(imagefile.tempFilePath,{
-        //     folder:'profileimage'
-        // })
+        console.log(req.files.image)
+        const imagefile=req.files.image
+        const imageupload=await cloudinary.uploader.upload(imagefile.tempFilePath,{
+            folder:'profileimage'
+        })
         // console.log(imageupload)
-        const {name,email,password,confirm_password}=req.body
+        const {name,email,password,cpassword}=req.body
         const user=await UserModel.findOne({email:email});
-        // console.log(user)
+        console.log(user)
         if(user){
             res.status(401).json({
                 message: 'Email already exists',
@@ -30,18 +30,18 @@ class UserController{
             
         }
         else{
-            if(name && email && password && confirm_password){
-                if(password==confirm_password){
+            if(name && email && password && cpassword){
+                if(password==cpassword){
                     try{
                         const hashpassword=await bcrypt.hash(password,10)
                         const result=new UserModel({
                         name: name,
                         email: email,
                         password: hashpassword,
-                        // image:{
-                        //     public_id: imageupload.public_id,
-                        //     url: imageupload.secure_url
-                        // }
+                        image:{
+                            public_id: imageupload.public_id,
+                            url: imageupload.secure_url
+                        }
                         })
                         await result.save()
                         res.status(401).json({
