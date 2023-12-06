@@ -14,10 +14,10 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    cpassword:{
-      type:String,
-      required:true,
-    },
+    // cpassword:{
+    //   type:String,
+    //   required:true,
+    // },
     image:
     {
       public_id: {
