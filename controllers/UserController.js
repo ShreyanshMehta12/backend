@@ -24,7 +24,7 @@ class UserController{
         const user=await UserModel.findOne({email:email});
         console.log(user)
         if(user){
-            res.status(401).json({
+            res.status(201).json({
                 message: 'Email already exists',
             })
             
@@ -45,7 +45,7 @@ class UserController{
                         })
                         // console.log(result)
                         await result.save()
-                        res.status(401).json({
+                        res.status(201).json({
                             message: 'Successfully registered',
                             result,
                         })
@@ -55,13 +55,13 @@ class UserController{
                     }
                 }
                 else{
-                    res.status(401).json({
+                    res.status(201).json({
                         message: 'Password and confirm password does not match',
                     }) 
                 }
             }
             else{
-                res.status(401).json({
+                res.status(201).json({
                 message: 'All fields are required',
             })
             
