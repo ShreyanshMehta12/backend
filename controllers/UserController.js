@@ -101,21 +101,21 @@ class UserController{
                     // }
                    }
                    else{
-                    res.status(401).json({
+                    res.status(201).json({
                         message: 'Email and Password is not valid',
                     })
                    
                    }
                 }
                 else{
-                    res.status(401).json({
+                    res.status(201).json({
                         message: 'You are not a registered user',
                     })
                     
                 }
             }
             else{
-                res.status(401).json({
+                res.status(201).json({
                     message: 'All Field are required',
                 })
                 
@@ -155,13 +155,13 @@ class UserController{
                 const ismatch=await bcrypt.compare(oldpassword,user.password)
                 if(!ismatch){
 
-                    res.status(400)
+                    res.status(201)
                     .json({ status: "Failed",message: "Old Password is incorrect"});
         
                 }else{
                     if(newpassword!==cpassword){
 
-                        res.status(400)
+                        res.status(201)
                         .json({ status: "Failed",message: "Password and Conform Password does not match"});
             
                     }else{
@@ -176,7 +176,7 @@ class UserController{
                     }
                 }
             }else{
-                res.status(400)
+                res.status(201)
                 .json({ status: "Failed",message: "All Field are required"});
             
             }
@@ -224,7 +224,7 @@ class UserController{
     static get_user_detail =async(req,res)=>{
         try{
             const user=await UserModel.findById(req.user.id)
-            res.status(200).json({
+            res.status(201).json({
                 success:true,
                 user
             })
@@ -238,7 +238,7 @@ class UserController{
         try{
             const user=await UserModel.find()
             //console.log(result)
-            res.status(200).json({
+            res.status(201).json({
                 success:true,
                 user
             })  
