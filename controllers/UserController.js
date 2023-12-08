@@ -80,9 +80,10 @@ class UserController{
                     //multiple login
                     // if(user.role == 'user'){
                         //generate token
-                      const token=jwt.sign({id: user._id},'kishanmehta12')
-                      //console.log(token)
+                    const token=jwt.sign({id: user._id},'kishanmehta12')
+                      
                     res.cookie('token',token)
+                    console.log(token)
                     res
                         .status(201)
                         .json({
@@ -227,7 +228,7 @@ class UserController{
             res.status(201).json({
                 success:true,
                 user
-            })
+            });
         }catch(error){
             console.log(error)
         }
