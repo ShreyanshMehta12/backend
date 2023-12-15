@@ -77,29 +77,16 @@ class UserController{
                 if(user != null){
                    const ismatched = await bcrypt.compare(password,user.password)
                    if(ismatched){
-                    //multiple login
-                    // if(user.role == 'user'){
-                        //generate token
-                    const token=jwt.sign({id: user._id},'kishanmehta12')
-                      
+                    
+                    //generate token
+                    const token = jwt.sign({id: user._id},'kishanmehta12')
+                    // console.log(token)
+                    
                     res.cookie('token',token)
-                    console.log(token)
-                    res
-                        .status(201)
-                        .json({
-                            status: "success", 
-                            message:"login successfully with web token",
-                            token:token,
-                            user
-                        });
-                    // }
-                    // if(user.role == 'admin'){
-                    //     //generate token
-                    //   const token=jwt.sign({id: user._id},'kishanmehta12')
-                    //   //console.log(token)
-                    //   res.cookie('token',token)
-                    //   res.redirect('/admin/display')
-                    // }
+                    
+                    res.status(201)
+                        .json({status: "success",message:"login successfully with web token",token,user});
+                    
                    }
                    else{
                     res.status(201).json({
