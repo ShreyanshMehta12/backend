@@ -12,7 +12,7 @@ const CheckUserAuth=async(req,res,next)=>{
     }
     else{
         const verify_token=jwt.verify(token,'kishanmehta12')
-        const data=await UserModal.findById({_id:verify_token.id})
+        const data=await UserModal.findById(verify_token.ID)
         //console.log(data)
         req.user=data
         // console.log(verify_token)

@@ -79,7 +79,7 @@ class UserController{
                    if(ismatched){
                     
                     //generate token
-                    const token = jwt.sign({id: user._id},'kishanmehta12')
+                    const token = jwt.sign({ID: user._id},'kishanmehta12')
                     // console.log(token)
                     
                     res.cookie('token',token)
