@@ -82,7 +82,7 @@ class UserController{
                     const token = jwt.sign({ID: user._id},'kishanmehta12')
                     console.log(token)
                     
-                    res.cookie('tokenn','kishan');
+                    res.cookie('token',token)
                     // console.log(res.cookie)
                     res.status(201)
                         .json({status: "success",message:"login successfully with web token",token,user});
