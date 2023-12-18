@@ -1,7 +1,6 @@
 const jwt=require('jsonwebtoken')
 const UserModal=require('../models/User')
 
-
 const CheckUserAuth=async(req,res,next)=>{
     //console.log("hello user")
     const{token}=req.cookies
@@ -12,10 +11,10 @@ const CheckUserAuth=async(req,res,next)=>{
     }
     else{
         const verify_token=jwt.verify(token,'kishanmehta12')
-        const data=await UserModal.findById(verify_token.ID)
+        const user=await UserModal.findById(verify_token.ID)
         //console.log(data)
-        req.user=data
-        // console.log(verify_token)
+        req.user=user
+        console.log(verify_token)
         next()
     }
 }
