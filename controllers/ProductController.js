@@ -13,12 +13,23 @@ cloudinary.config({
 class ProductController{
     
     static create = async(req,res)=>{
+
+        // console.log(req.files.image)
+        const imagefile=req.files.image
+        const imageupload=await cloudinary.uploader.upload(imagefile.tempFilePath,{
+            folder:'profileimage'
+        })
+        // console.log(imageupload)
+
        try{
-            const {name,description,image,price,stock} = req.body
+            const {name,description,price,stock} = req.body
             const result = new ProductModel({
                 name:name,
                 description:description,
-                image:image,
+                image:{
+                    public_id: imageupload.public_id,
+                    url: imageupload.secure_url
+                },
                 price:price,
                 stock:stock
             })

@@ -83,10 +83,9 @@ class UserController{
                     console.log(token)
                     
                     res.cookie('token',token)
-                    // console.log(res.cookie)
+
                     res.status(201)
                         .json({status: "success",message:"login successfully with web token",token,user});
-                    
                    }
                    else{
                     res.status(201).json({
@@ -211,7 +210,7 @@ class UserController{
     }
     static get_user_detail =async(req,res)=>{
         try{
-            const user=await UserModel.findById(req.user.id)
+            const user=await UserModel.findById(req.user._id)
             res.status(201).json({
                 success:true,
                 user
