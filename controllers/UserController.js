@@ -80,7 +80,7 @@ class UserController{
                     
                     //generate token
                     const token = jwt.sign({ID: user._id},'kishanmehta12')
-                    console.log(token)
+                    // console.log(token)
                     
                     res.cookie('token',token)
 
@@ -210,10 +210,10 @@ class UserController{
     }
     static get_user_detail =async(req,res)=>{
         try{
-            const user=await UserModel.findById(req.user._id)
+            const user=await UserModel.findById(req.user.id)
             res.status(201).json({
                 success:true,
-                user
+                user,
             });
         }catch(error){
             console.log(error)

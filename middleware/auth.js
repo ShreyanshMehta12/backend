@@ -1,10 +1,11 @@
-const jwt=require('jsonwebtoken')
-const UserModel=require('../models/User')
+const jwt = require('jsonwebtoken');
+const UserModel=require('../models/User');
 
 const CheckUserAuth=async(req,res,next)=>{
     //console.log("hello user")
-    const{token}=req.cookies
+    const {token} = req.cookies
     console.log(token)
+
     if(!token){
         req.flash('error','Unauthorized user, Please Login!')
         return res.redirect('/')
