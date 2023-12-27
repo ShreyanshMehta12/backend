@@ -13,12 +13,19 @@ cloudinary.config({
 class CategoryController{
 
     static category = async(req,res)=>{
+        const imagefile=req.files.image
+        const imageupload=await cloudinary.uploader.upload(imagefile.tempFilePath,{
+            folder:'profileimage'
+        })
         try{
             const{name,image,_id,email}=req.body
             const data = new CategoryModel({
                 name:name,
                 email:email,
-                image:image
+                image:{
+                    public_id: imageupload.public_id,
+                    url: imageupload.secure_url
+                },
             })
             await data.save();
             
