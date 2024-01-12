@@ -12,7 +12,7 @@ router.post('/create',ProductController.create)
 router.get('/product/display',ProductController.display)
 router.get('/view/:id',ProductController.view)
 router.post('/update/:id',ProductController.update)
-router.delete('/delete/:id',ProductController.delete)
+router.delete('/prodelete/:id',ProductController.delete)
 router.get('/productdetail/:id',ProductController.productdetail)
 
 //user controller
