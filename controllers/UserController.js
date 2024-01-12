@@ -80,7 +80,7 @@ class UserController{
                     
                     //generate token
                     const token = jwt.sign({ID: user._id},'kishanmehta12')
-                    // console.log(token)
+                    console.log(token)
                     
                     res.cookie('token',token)
 

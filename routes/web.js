@@ -9,7 +9,7 @@ const SliderController = require('../controllers/SliderController')
 
 //product controller
 router.post('/create',ProductController.create)
-router.get('/display',ProductController.display)
+router.get('/product/display',ProductController.display)
 router.get('/view/:id',ProductController.view)
 router.post('/update/:id',ProductController.update)
 router.delete('/delete/:id',ProductController.delete)
