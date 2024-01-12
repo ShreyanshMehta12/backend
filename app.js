@@ -20,6 +20,8 @@ app.use(cors())
 
 app.use(express.json())
 connectdb()
+
+
 app.use('/api',web)
 
 
