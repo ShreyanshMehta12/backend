@@ -10,7 +10,7 @@ const CategorySchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    image:    
+    image: [  
     {
       public_id: {
         type: String,
@@ -20,8 +20,8 @@ const CategorySchema = new mongoose.Schema({
         type: String,
          
       },
-    }
-    
+    },
+  ],
 },{timestamps:true})
 
 // create collection
