@@ -8,14 +8,13 @@ const cors = require('cors')
 dotenv.config({
   path: '.env'
 })
-const fileUpload=require("express-fileupload");
-//Temp file uploader
-app.use(fileUpload({useTempFiles: true}));
-
 //cookies
 const cookieParser = require('cookie-parser');
 app.use(cookieParser())
 
+const fileUpload=require("express-fileupload");
+//Temp file uploader
+app.use(fileUpload({useTempFiles: true}));
 //cors
 app.use(cors())
 
