@@ -6,6 +6,7 @@ const CheckUserAuth = require('../middleware/auth')
 const CategoryController = require('../controllers/CategoryController')
 const router = express.Router()
 const SliderController = require('../controllers/SliderController')
+const PaymentController = require('../controllers/PaymentController')
 
 //product controller
 router.post('/create',ProductController.create)
@@ -34,5 +35,10 @@ router.post('/catupdate/:id',CategoryController.catupdate)
 //Slider controller
 router.post('/insert',SliderController.insert)
 router.get('/sdisplay',SliderController.display)
+
+//payment Controller
+router.post('/payment/process', CheckUserAuth,PaymentController.processPayment)
+router.get('/stripeapiKey', CheckUserAuth,PaymentController.sendStripeApiKey)
+
 
 module.exports = router
