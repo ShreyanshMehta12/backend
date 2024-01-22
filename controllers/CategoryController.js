@@ -75,13 +75,13 @@ class CategoryController{
             console.log(error);
         }
     }
-    static categorydetail = async(req,res) =>{
-        const categorydetails = await CategoryModel.findById(req.params.id);
-        res.status(200).json({
-            success: true,
-            categorydetails
-        });
-    }
+    // static categorydetail = async(req,res) =>{
+    //     const categorydetails = await CategoryModel.findById(req.params.id);
+    //     res.status(200).json({
+    //         success: true,
+    //         categorydetails
+    //     });
+    // }
 
 }
 
