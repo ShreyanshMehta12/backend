@@ -18,14 +18,16 @@ class CategoryController{
             folder:'profileimage'
         })
         try{
-            const{name,image,_id,email}=req.body
+            const{name,image,_id,email,price,stock,description}=req.body
             const data = new CategoryModel({
                 name:name,
-                email:email,
                 image:{
                     public_id: imageupload.public_id,
                     url: imageupload.secure_url
                 },
+                description:description,
+                price:price,
+                stock:stock
             })
             await data.save();
             
@@ -47,11 +49,13 @@ class CategoryController{
     };
     static catupdate = async(req,res)=>{
         try{
-            const{name,image,_id,email} = req.body
+            const{name,image,_id,description,price,stock} = req.body
             const data =await CategoryModel.findByIdAndUpdate(req.params.id,{
-                    name:name,
-                    email:email,
-                    image:image
+                name:name,
+                description:description,
+                image:image,
+                price:price,
+                stock:stock
             });
             await data.save();
             res.status(200).json({
