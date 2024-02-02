@@ -7,6 +7,7 @@ const CategoryController = require('../controllers/CategoryController')
 const router = express.Router()
 const SliderController = require('../controllers/SliderController')
 const PaymentController = require('../controllers/PaymentController')
+const OrderController = require('../controllers/OrderController')
 
 //product controller
 router.post('/create',ProductController.create)
@@ -39,7 +40,14 @@ router.get('/sdisplay',SliderController.display)
 
 //payment Controller
 router.post('/payment/process', CheckUserAuth,PaymentController.processPayment)
-router.get('/stripeapiKey', CheckUserAuth,PaymentController.sendStripeApiKey)
+router.get('/stripeapiKey',PaymentController.sendStripeApiKey)
+
+//Order Controller
+router.post('/order/create', OrderController.createorder)
+router.post('/order/getsingleorder/:id', OrderController.getsingleorder)
+router.get('/order/myorder', OrderController.myorder)
+router.get('/order/getallorders', OrderController.getallorders)
+router.get('/order/deleteorder/:id', OrderController.deleteorder)
 
 
 module.exports = router
