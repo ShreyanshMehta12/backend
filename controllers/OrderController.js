@@ -36,7 +36,7 @@ res
     // in myorder user can watch its order
     static myorder = async(req,res) => {
         try{
-            const order = await OrderModel.find()
+            const data = await OrderModel.find()
             res.status(200)
             .json({ status: 'success', data });
             
