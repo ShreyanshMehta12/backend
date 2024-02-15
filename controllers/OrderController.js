@@ -25,9 +25,9 @@ res
     }
     static getsingleorder = async(req,res) => {
         try{
-            const data = await OrderModel.findById(req.params.id)
+            const order = await OrderModel.findById(req.params.id)
             res.status(200)
-            .json({ status: 'success', data });
+            .json({ status: 'success', order });
 
         }catch(error){
             console.log(error)
@@ -36,9 +36,9 @@ res
     // in myorder user can watch its order
     static myorder = async(req,res) => {
         try{
-            const data = await OrderModel.find()
+            const order = await OrderModel.find()
             res.status(200)
-            .json({ status: 'success', data });
+            .json({ status: 'success', order });
             
         }catch(error){
             console.log(error);
@@ -50,7 +50,7 @@ res
         try{
             const order = await OrderModel.find()
             res.status(200)
-            .json({ status: 'success', data });
+            .json({ status: 'success', order });
             
         }catch(error){
             console.log(error)
@@ -61,7 +61,7 @@ res
         try{
             const order = await OrderModel.findByIdAndDelete(req.params.id)
             res.status(200)
-            .json({ status: 'success', data });
+            .json({ status: 'success', order });
             
         }catch(error){
             console.log(error)
